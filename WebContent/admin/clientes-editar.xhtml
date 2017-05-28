@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h2>Cliente Editar</h2>
+				<br></br>
+				<br></br>
+				<h:form id="inserirCliente">
+					<h:panelGroup rendered="#{not empty clienteBean.erro}">
+						<div class="alert alert-danger">#{clienteBean.erro}</div>
+					</h:panelGroup>
+					
+					<h:form role="form">
+						<h:inputHidden  id="idCliente" value="#{clienteBean.cliente.idCliente}" />
+						<h:inputHidden  id="cpfCliente" value="#{clienteBean.cliente.cpfCliente}" />
+						
+		    			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">    
+				        	<h:outputLabel  for="nomeCliente" value="Nome: *" />
+				        	<p:inputText  id="nomeCliente" 
+				        		value="#{clienteBean.cliente.nomeCliente}" label="Nome" required="true" />
+				        		
+				        	<h:outputLabel  value="CPF: " />
+				        	<h:outputLabel 	value="#{clienteBean.cliente.cpfCliente}" />
+				        		
+				        	<h:outputLabel  for="enderecoCliente" value="Endereço: *" />
+				        	<p:inputText  id="enderecoCliente" 
+				        		value="#{clienteBean.cliente.enderecoCliente}" label="Endereço" size="60" required="true" />
+				        		
+				        					        		
+				        	<h:outputLabel value="Ativo: " />
+        					<p:inputSwitch value="#{clienteBean.cliente.cadastroAtivo}" />
+        					
+        					<h:outputLabel for="valorPatrimonio" value="Valor Patrimônio: " />
+        					<p:spinner id="valorPatrimonio" value="#{clienteBean.cliente.valorPatrimonio}" prefix="R$" min="1000" />			
+				        		
+				        		
+				        	<h:outputLabel  for="regiaoCliente" value="Região: *" />
+				        	<p:selectOneListbox id="regiaoCliente" value="#{clienteBean.cliente.regiaoCliente.idRegiaoCliente}">
+				        		<f:selectItem itemLabel="Selecione" itemValue="0" />
+					            <f:selectItems value="#{clienteBean.regioes}" var="regiao" itemLabel="#{regiao.nomeRegiaoCliente}" itemValue="#{regiao.idRegiaoCliente}"  />
+					        </p:selectOneListbox>
+				        	
+					    </h:panelGrid>
+						<br/>
+						
+						<br/>
+						<p:commandButton value="Voltar" icon="ui-icon-back" onclick="window.history.back();"/>
+						<p:commandButton icon="ui-icon-star" update="matchGrid" 
+							value="Editar" ajax="false" action="#{clienteBean.editar}" />
+						
+					</h:form>
+					
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

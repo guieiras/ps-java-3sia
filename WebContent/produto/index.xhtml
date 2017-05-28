@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:head>
+    <title>Produtos</title>
+  </h:head>
+  <h:body>
+  
+  		<ui:composition template="../template/layout.xhtml">
+  			<ui:define name="content">
+  
+			    <h2>Produtos</h2>
+			    <h:form rendered="#{not empty produtoBean.produtos}">
+				    <h:dataTable value="#{produtoBean.produtos}" var="produto" width="50%">
+				       <h:column>    	
+				          <c:facet name="header">Nome</c:facet>			
+					      #{produto.nome}
+					   </h:column>
+					   <h:column>    	
+				          <c:facet name="header">Descricao</c:facet>			
+					      #{produto.descricao}
+					   </h:column>
+					   <h:column>    
+							<c:facet name="header">Alterar</c:facet>
+							<h:commandButton value="Alterar" action="#{produtoBean.alteracao}" ajax="false">
+								<c:setPropertyActionListener target="#{produtoBean.idProduto}" value="#{produto.id}" />
+							</h:commandButton>
+					   </h:column>
+				    </h:dataTable>
+			    </h:form>
+			    <h:panelGroup rendered="#{empty produtoBean.produtos}">
+			        <p>Nenhum produto encontrado.</p>
+			    </h:panelGroup>
+			    
+		   </ui:define>
+		  </ui:composition>
+		   
+  </h:body>  
+</html>

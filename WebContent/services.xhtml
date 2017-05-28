@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+  <h:body>
+  		<ui:composition template="template/layout.xhtml">
+  			<ui:define name="content">
+    			<div class="container">
+			        <div class="row">
+			            <div class="col-lg-12">
+							<h:form id="form">           
+							    <h3>Serviços</h3>
+							    <p:accordionPanel multiple="true" value="#{servicosBean.servicos}" var="servico">
+							        <p:tab title="#{servico.nomeServico}">
+							            <h:panelGrid columns="2" cellpadding="10" styleClass="table table-inverse">
+							                <img src="#{servico.urlImageServico}"/>
+							                <h:outputText value="#{servico.descricaoServico}" />
+							            </h:panelGrid>
+							        </p:tab>
+							    </p:accordionPanel>
+							</h:form> 						
+    					</div>
+    				</div>
+    			</div>
+    		</ui:define>
+    	</ui:composition>
+  </h:body>
+</html>
+
+
+

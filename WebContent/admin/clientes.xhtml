@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h:form id="listaClientes">
+					
+					<h:panelGroup rendered="#{not empty clienteBean.mensagem}">
+			        	<div class="alert alert-success">#{clienteBean.mensagem}</div>
+			        	<br></br>
+			    	</h:panelGroup>
+			    	
+			    	<h:form role="form">
+				    	<h:panelGroup id="painelFiltro">
+				    		<h2>Clientes - Filtros da Busca</h2>
+				        	<h:panelGrid columns="2" id="matchGrid" cellpadding="5">    
+					        	<h:outputLabel  for="nomeCliente" value="Nome:" />
+					        	<p:inputText  id="nomeCliente" value="#{clienteBean.cliente.nomeCliente}" label="Nome" required="false" />
+					        	
+					        	<h:outputLabel  for="enderecoCliente" value="Endereço: *" />
+					        	<p:inputText  id="enderecoCliente" 	value="#{clienteBean.cliente.enderecoCliente}" label="Endereço" size="60" required="false" />
+					        	
+					        	<h:outputLabel  for="regiaoCliente" value="Região:" />
+					        	<p:selectOneListbox id="regiaoCliente" value="#{clienteBean.cliente.regiaoCliente.idRegiaoCliente}">
+					        		<f:selectItem itemLabel="Selecione" itemValue="0" />
+						            <f:selectItems value="#{clienteBean.regioes}" var="regiao" itemLabel="#{regiao.nomeRegiaoCliente}" itemValue="#{regiao.idRegiaoCliente}"  />
+						        </p:selectOneListbox>
+						        
+						        <p:commandButton value="Filtrar" action="#{clienteBean.filtrar}"  ajax="false" />
+						    	
+					        </h:panelGrid>
+				    	</h:panelGroup>
+				    	
+						<br></br>
+						<br></br>
+						<p:commandButton value="Novo Cliente" icon="ui-icon-star" action="#{clienteBean.abrirInserir}" immediate="true" ajax="false">
+						    <f:param name="idCliente" value="0" />
+						</p:commandButton>
+					</h:form>
+					
+					<br></br>
+					<br></br>
+					
+				
+					<p:dataTable var="cliente" value="#{clienteBean.clientes}"  rendered="#{not empty clienteBean.clientes}">>
+						<p:column  headerText="Nome do cliente">
+							<h:outputText value="#{cliente.nomeCliente}" />
+						</p:column>
+						<p:column headerText="CPF">
+							<h:outputText value="#{cliente.cpfCliente}" />
+						</p:column>
+						<p:column headerText="Endereço">
+							<h:outputText value="#{cliente.enderecoCliente}" />
+						</p:column>
+						<p:column headerText="Cliente Ativo">
+							<h:outputText rendered="#{cliente.cadastroAtivo == true}" value="Sim" />  
+							<h:outputText rendered="#{cliente.cadastroAtivo != true}" value="Não" />  
+						</p:column>
+						<p:column headerText="Região">
+							<h:outputText value="#{cliente.regiaoCliente.nomeRegiaoCliente}" />  
+						</p:column>
+						<p:column headerText="Editar">
+							<p:commandButton id="botaoEditar" value="Editar" icon="ui-icon-edit" action="#{clienteBean.abrirEditar}" immediate="true" ajax="false">
+							    <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
+							</p:commandButton>
+						</p:column>
+						<p:column headerText="Remover">
+							<p:commandButton id="botaoExcluir" value="Excluir" icon="ui-icon-trash" action="#{clienteBean.excluir}" immediate="true" ajax="false">
+							    <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

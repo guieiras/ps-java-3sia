@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+  <h:body>
+  		<ui:composition template="template/layout.xhtml">
+  			<ui:define name="content">
+				<div class="container">
+			        <div class="row">
+			            <div class="col-lg-12">  
+			    			<h:form role="form">
+				    			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+							    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">    
+						        	<h:outputLabel styleClass="control-label" for="nomeUsuario" value="Login: *" />
+						        	
+						        	<p:inputText styleClass="form-control" id="loginUsuario" 
+						        		value="#{loginBean.usuario.loginUsuario}" label="Usuario" required="true" />
+						        		
+							        <h:outputLabel styleClass="control-label" for="senhaUsuario" value="Senha: *" />
+							        <p:password styleClass="form-control" id="senhaUsuario" 
+							        	value="#{loginBean.usuario.senhaUsuario}" label="Senha" required="true" />
+							    </h:panelGrid>
+								<br/>
+								<h:panelGroup rendered="#{not empty loginBean.erro}">
+									<h:outputLabel styleClass="control-label" value="#{loginBean.erro}" />
+								</h:panelGroup>
+								<br/>
+								<p:commandButton styleClass="btn btn-primary btn-lg" update="matchGrid" 
+									value="Login" ajax="false" action="#{loginBean.login}" />
+							</h:form>
+						</div>
+					</div>
+				</div>
+    		</ui:define>
+    	</ui:composition>
+  </h:body>
+</html>
+
+
+

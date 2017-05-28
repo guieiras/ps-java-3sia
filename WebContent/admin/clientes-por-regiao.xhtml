@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h2>Clientes por Região</h2>
+				<h:form id="listaRegioes">
+					<br></br>
+					<p:dataTable var="regiao" value="#{regiaoClienteBean.regioes}">
+						<p:column  headerText="Nome da Regiao">
+						
+							<p:commandLink id="link" action="#{regiaoClienteBean.getRegiao(regiao.idRegiaoCliente)}" ajax="false" value="#{regiao.nomeRegiaoCliente}">
+						    </p:commandLink>
+						
+						</p:column>
+					</p:dataTable>
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

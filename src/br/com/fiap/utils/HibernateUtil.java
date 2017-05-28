@@ -3,6 +3,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.DepartamentoModel;
+import br.com.fiap.model.FuncionarioModel;
 import br.com.fiap.model.LogModel;
 import br.com.fiap.model.ProdutoModel;
 import br.com.fiap.model.RegiaoClienteModel;
@@ -22,7 +24,8 @@ public class HibernateUtil {
                 ac.addAnnotatedClass(RegiaoClienteModel.class);
                 ac.addAnnotatedClass(ClienteModel.class);
                 ac.addAnnotatedClass(UsuarioModel.class);
-                
+                ac.addAnnotatedClass(FuncionarioModel.class);
+                ac.addAnnotatedClass(DepartamentoModel.class);                
                 
                 sessionFactory = ac.configure().buildSessionFactory();
             } catch (Throwable ex) {

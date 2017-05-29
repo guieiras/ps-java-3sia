@@ -71,7 +71,6 @@ public class FuncionarioBean {
 	}
 
 	public List<DepartamentoModel> getDepartamentos() {
-		System.out.println("Departamentos");
 		return departamentos;
 	}
 

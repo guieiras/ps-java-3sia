@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 import br.com.fiap.business.DepartamentoBusiness;
+import br.com.fiap.business.FuncionarioBusiness;
 import br.com.fiap.model.DepartamentoModel;
 
 @ManagedBean
@@ -21,6 +22,12 @@ public class DepartamentoBean {
 	public String getDepartamento(int idDepartamento){
 		departamento = new DepartamentoBusiness().getDepartamento(idDepartamento);
 		return "funcionarios-por-departamento";
+	}
+	
+	public String inserir(){
+		new DepartamentoBusiness().save(departamento);
+		departamentos = new DepartamentoBusiness().findAll();
+		return "departamentos.xhtml";
 	}
 	
 	public List<DepartamentoModel> getDepartamentos() {

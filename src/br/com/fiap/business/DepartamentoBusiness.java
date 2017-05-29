@@ -10,6 +10,10 @@ public class DepartamentoBusiness {
 		return new DepartamentoDAO().findAll();
 	}
 	
+	public void save(DepartamentoModel departamento){
+		new DepartamentoDAO().save(departamento);
+	}
+	
 	public DepartamentoModel getDepartamento(int id){
 		return new DepartamentoDAO().getDepartamento(id);
 	}

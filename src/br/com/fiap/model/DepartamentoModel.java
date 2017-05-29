@@ -4,15 +4,18 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class DepartamentoModel {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DEPARTAMENTOMODEL")
+	@SequenceGenerator(name = "SEQ_DEPARTAMENTOMODEL", sequenceName = "SEQ_DEPARTAMENTOMODEL", allocationSize = 1)
 	private int idDepartamento;
 	
 	private String nomeDepartamento;

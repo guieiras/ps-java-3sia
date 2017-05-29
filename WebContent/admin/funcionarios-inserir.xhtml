@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h2>Inserir Funcionário</h2>
+				<br></br>
+				<h:form id="inserirFuncionario">
+					<h:panelGroup rendered="#{not empty funcionarioBean.erro}">
+						<div class="alert alert-danger">#{funcionarioBean.erro}</div>
+					</h:panelGroup>
+					
+					<h:form role="form">
+		    			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">    
+				        	<h:outputLabel  for="nomeFuncionario" value="Nome: *" />
+				        	<p:inputText  id="nomeFuncionario" 
+				        		value="#{funcionarioBean.funcionario.nomeFuncionario}" label="Nome" required="true" />
+				        		
+				        	<h:outputLabel  for="emailFuncionario" value="E-mail: *" />
+				        	<p:inputText  id="emailFuncionario" 
+				        		value="#{funcionarioBean.funcionario.emailFuncionario}" label="E-mail" required="true" />
+
+				        	<h:outputLabel  for="departamentoFuncionario" value="Região: *" />
+				        	<p:selectOneListbox id="departamentoFuncionario" value="#{funcionarioBean.funcionario.departamento.idDepartamento}">
+				        		<f:selectItem itemLabel="Selecione" itemValue="0" />
+					            <f:selectItems value="#{funcionarioBean.departamentos}" var="departamento" itemLabel="#{departamento.nomeDepartamento}" itemValue="#{departamento.idDepartamento}"  />
+					        </p:selectOneListbox>
+					    </h:panelGrid>
+						<br/>
+						<p:commandButton value="Voltar" icon="ui-icon-back" onclick="window.history.back();"/>
+						<p:commandButton icon="ui-icon-star" update="matchGrid" 
+							value="Inserir" ajax="false" action="#{funcionarioBean.inserir}" />
+					</h:form>
+					
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h:form id="listaFuncionarios">
+					
+					<h:panelGroup rendered="#{not empty funcionarioBean.mensagem}">
+			        	<div class="alert alert-success">#{funcionarioBean.mensagem}</div>
+			        	<br></br>
+			    	</h:panelGroup>
+			    	
+			    	<h:form role="form">
+				    	<h:panelGroup id="painelFiltro">
+				    		<h2>Funcionarios - Filtros da Busca</h2>
+				        	<h:panelGrid columns="2" id="matchGrid" cellpadding="5">    
+					        	<h:outputLabel for="nomeFuncionario" value="Nome:" />
+					        	<p:inputText id="nomeFuncionario" value="#{funcionarioBean.funcionario.nomeFuncionario}" label="Nome" required="false" />
+					        	
+					        	<h:outputLabel for="emailFuncionario" value="E-mail:" />
+					        	<p:inputText id="emailFuncionario" 	value="#{funcionarioBean.funcionario.emailFuncionario}" label="E-mail" size="60" required="false" />
+					        	
+					        	<h:outputLabel for="departamentoFuncionario" value="Região:" />
+					        	<p:selectOneListbox id="departamentoFuncionario" value="#{funcionarioBean.funcionario.departamento.idDepartamento}">
+					        		<f:selectItem itemLabel="Selecione" itemValue="0" />
+						            <f:selectItems value="#{funcionarioBean.departamentos}" var="departamento" itemLabel="#{departamento.nomeDepartamento}" itemValue="#{departamento.idDepartamento}"  />
+						        </p:selectOneListbox>
+						        
+						        <p:commandButton value="Filtrar" action="#{funcionarioBean.filtrar}"  ajax="false" />
+						    	
+					        </h:panelGrid>
+				    	</h:panelGroup>
+				    	
+						<br></br>
+						<a href="funcionarios-inserir.xhtml">Novo Funcionario</a>
+					</h:form>
+					
+					<br></br>
+					<br></br>
+					
+				
+					<p:dataTable var="funcionario" value="#{funcionarioBean.funcionarios}"  rendered="#{not empty funcionarioBean.funcionarios}">
+						<p:column headerText="Nome do funcionario">
+							<h:outputText value="#{funcionario.nomeFuncionario}" />
+						</p:column>
+						<p:column headerText="E-mail">
+							<h:outputText value="#{funcionario.emailFuncionario}" />
+						</p:column>
+						<p:column headerText="Departamento">
+							<h:outputText value="#{funcionario.departamento.nomeDepartamento}" />  
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

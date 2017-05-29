@@ -30,17 +30,12 @@ public class FuncionarioBean {
 					funcionario.getNomeFuncionario(), 
 					funcionario.getEmailFuncionario());
 	}
-
-	public String abrirInserir(){
-		System.out.println("Inserindo Funcionário");
-		return "funcionarios-inserir.xhtml";
-	}
 	
 	public String inserir(){
 		new FuncionarioBusiness().save(funcionario);
 		mensagem = "Cliente inserido com sucesso";
 		funcionarios = new FuncionarioBusiness().findAll();
-		return "funcionarios";
+		return "funcionarios.xhtml";
 	}
 
 	public FuncionarioModel getFuncionario() {
@@ -76,6 +71,7 @@ public class FuncionarioBean {
 	}
 
 	public List<DepartamentoModel> getDepartamentos() {
+		System.out.println("Departamentos");
 		return departamentos;
 	}
 

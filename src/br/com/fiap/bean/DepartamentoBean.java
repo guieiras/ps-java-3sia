@@ -14,7 +14,7 @@ public class DepartamentoBean {
 	private List<DepartamentoModel> departamentos = new ArrayList<DepartamentoModel>();
 	private DepartamentoModel departamento = new DepartamentoModel();
 	
-	public DepartamentoBean(){
+	public DepartamentoBean() {
 		departamentos = new DepartamentoBusiness().findAll();
 	}
 

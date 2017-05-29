@@ -22,7 +22,7 @@ public class FuncionarioModel {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="IDDEPARTAMENTO")
-	private DepartamentoModel regiaoCliente = new DepartamentoModel();
+	private DepartamentoModel departamento = new DepartamentoModel();
 
 	public int getIdFuncionario() {
 		return idFuncionario;
@@ -48,11 +48,11 @@ public class FuncionarioModel {
 		this.emailFuncionario = emailFuncionario;
 	}
 
-	public DepartamentoModel getRegiaoCliente() {
-		return regiaoCliente;
+	public DepartamentoModel getDepartamento() {
+		return departamento;
 	}
 
-	public void setRegiaoCliente(DepartamentoModel regiaoCliente) {
-		this.regiaoCliente = regiaoCliente;
+	public void setDepartamento(DepartamentoModel departamento) {
+		this.departamento = departamento;
 	}
 }

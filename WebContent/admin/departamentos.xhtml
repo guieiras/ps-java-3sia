@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/layout-admin.xhtml">
+		<ui:define name="content">
+
+			<!-- Page Content -->
+			<div class="container">
+				<h2>Departamentos</h2>
+				<h:form id="listaDepartamentos">
+					<p:dataTable var="departamento" value="#{departamentoBean.departamentos}">
+						<p:column  headerText="Nome do Departamento">
+							<p:commandLink id="link" 
+								action="#{departamentoBean.getDepartamento(departamento.idDepartamento)}" 
+								ajax="false" 
+								value="#{departamento.nomeDepartamento}"/>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

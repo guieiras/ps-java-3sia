@@ -29,9 +29,9 @@ public class FuncionarioDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		Criteria criteria = session.createCriteria(FuncionarioModel.class, "FuncionarioModel");
-		criteria.createAlias("FuncionarioModel.departamento", "D");
 
 		if(idDepartamento != 0) {
+			criteria.createAlias("FuncionarioModel.departamento", "D");
 			criteria.add(Restrictions.eq("D.idDepartamento", idDepartamento ));
 		}
 
